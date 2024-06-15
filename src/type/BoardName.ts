@@ -1,0 +1,1 @@
+export type BoardName = ['ToDo', 'In Progress', 'Done']

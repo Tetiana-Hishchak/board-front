@@ -1,0 +1,137 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+}
+
+.input {
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+.board {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.boardContainer {
+  display: flex;
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+
+.board__container {
+  background-color: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  height: 100%;
+  margin: 10px;
+}
+
+.board__header {
+  margin-bottom: 20px;
+}
+
+.card__container {
+  border: 1px solid #dee2e6;
+  border-radius: 5px;
+  padding: 15px;
+  background-color: #fff;
+  height: 90%;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.card__container:hover {
+  background-color: #f1f1f1;
+}
+
+.card__buttons {
+  display: flex;
+  gap: 5px;
+  margin-top: 10px;
+  justify-content: end;
+}
+
+.card__button {
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.card__button:hover {
+  background-color: #5a6268;
+}
+
+/* .card__edit, .card__delete {
+  background-color: #dc3545;
+} */
+
+/* .card__edit:hover, .card__delete:hover {
+  background-color: #c82333;
+} */
+
+@media (max-width: 700px) {
+  .boardContainer {
+    display: block;
+  }
+
+  .boardContainer > div {
+    width: 100%;
+    margin: 20px;
+  }
+  
+}
+
+/* Tablet and Smaller Desktop */
+/* @media (min-width: 701px) and (max-width: 1120px) {
+  .grid {
+    grid-template-columns: repeat(2, 50%);
+  }
+} */
+
+/* @media (prefers-color-scheme: dark) {
+  .vercelLogo {
+    filter: invert(1);
+  }
+
+  .logo {
+    filter: invert(1) drop-shadow(0 0 0.3rem #ffffff70);
+  }
+} */
+
+/* @keyframes rotate {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+} */

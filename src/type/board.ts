@@ -1,4 +1,3 @@
-// import { BoardName } from "./BoardName";
 import { Card } from "./card";
 
 export type Board = {

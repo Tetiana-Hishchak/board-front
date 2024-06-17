@@ -1,11 +1,13 @@
 // /components/AddCardForm.tsx
 import React, { useState } from 'react';
+import styles from '../styles/style.module.css';
 
 interface AddCardFormProps {
+  onShowForm: (t:boolean) => void
   onCardAdd: (title: string, description: string) => void;
 }
 
-export const AddCardForm: React.FC<AddCardFormProps> = ({onCardAdd }) => {
+export const AddCardForm: React.FC<AddCardFormProps> = ({onCardAdd, onShowForm }) => {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
 
@@ -16,9 +18,14 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({onCardAdd }) => {
     setDescription('');
   };
 
+  const handleCancelAdd = (e: React.FormEvent) => {
+    onShowForm(false);
+  };
+  
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <input
+        className={styles.form__input}
         type="text"
         placeholder="Title"
         value={title}
@@ -26,12 +33,16 @@ export const AddCardForm: React.FC<AddCardFormProps> = ({onCardAdd }) => {
         required
       />
       <textarea
+        className={styles.form__input}
         placeholder="Description"
         value={description}
         onChange={(e) => setDescription(e.target.value)}
         required
       />
-      <button type="submit">Add Card</button>
+      <div className={styles.card__buttons}>
+        <button type="submit" className={styles.card__button}>Add Card</button>
+        <button className={styles.card__button} onClick={handleCancelAdd}>Cancel</button>
+      </div>
     </form>
   );
 };

@@ -36,6 +36,7 @@ export const Card: React.FC<CardProps> = ({ card, onUpdate, onDelete }) => {
           <div>
             Title: 
             <input
+              className={styles.form__input}
               type="text"
               value={editedTitle}
               onChange={(e) => setEditedTitle(e.target.value)}
@@ -44,6 +45,7 @@ export const Card: React.FC<CardProps> = ({ card, onUpdate, onDelete }) => {
           <div>
             Description: 
             <textarea
+              className={styles.form__input}
               value={editedDescription}
               onChange={(e) => setEditedDescription(e.target.value)}
               style={{ marginBottom: '10px' }}

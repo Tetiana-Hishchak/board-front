@@ -16,20 +16,6 @@ const Home = () => {
   const [selectedBoard, setSelectedBoard] = useState<Board | null>(null);
   const [showForm, setShowForm] = useState(false);
 
-  const searchBoard = () => {
-    if (boardName.trim() === '') {
-      setSelectedBoard(null);
-    } else {
-      const board = boards.find(item => item.name.toLocaleUpperCase().includes(boardName.toLocaleUpperCase()));
-      if (board) {
-        setSelectedBoard(board);
-      } else {
-        alert('Invalid board name. Please enter a valid name (ToDo, In Progress, or Done).');
-        setSelectedBoard(null);
-      }
-    }
-  };
-
   useEffect(() => {
     const fetchBoards = async () => {
       const boards = await api.getBoards();
@@ -84,6 +70,21 @@ const Home = () => {
       })));
     } catch (error) {
       console.error('Error deleting card:', error);
+    }
+  };
+
+  
+  const searchBoard = () => {
+    if (boardName.trim() === '') {
+      setSelectedBoard(null);
+    } else {
+      const board = boards.find(item => item.name.toLocaleUpperCase().includes(boardName.toLocaleUpperCase()));
+      if (board) {
+        setSelectedBoard(board);
+      } else {
+        alert('Invalid board name. Please enter a valid name (ToDo, In Progress, or Done).');
+        setSelectedBoard(null);
+      }
     }
   };
 

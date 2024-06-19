@@ -1,7 +1,8 @@
-import { Card } from "./card";
+import { ColumnType } from "./ColumnType";
 
 export type Board = {
     id: string,
     name: string,
-    cards: Card[],
+    columns: ColumnType[],
+  
 }

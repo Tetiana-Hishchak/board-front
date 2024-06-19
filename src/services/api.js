@@ -17,26 +17,30 @@ export const createBoard = async (name) => {
   return response.data;
 };
 
-export const addCard = async (title, description) => {
-  const response = await axios.post(`${API_URL}/cards`, { title, description });
+export const updateBoard = async (boardId, name) => {
+  const response = await axios.put(`${API_URL}/boards/${boardId}`, { name });
   return response.data;
 };
 
-export const moveCard = async (id, column) => {
-  const response = await axios.put(`${API_URL}/cards/${id}/column`, { column });
+export const deleteBoard = async (boardId) => {
+  await axios.delete(`${API_URL}/boards/${boardId}`);
+};
+
+export const addCard = async (boardId, title, description) => {
+  const response = await axios.post(`${API_URL}/boards/${boardId}/cards`, { title, description });
   return response.data;
 };
 
-export const getCards = async (boardId) => {
-  const response = await axios.get(`${API_URL}/cards`, { params: { boardId } });
+export const moveCard = async (boardId, cardId, destinationColumnId) => {
+  const response = await axios.put(`${API_URL}/boards/${boardId}/cards/${cardId}/move`, { destinationColumnId });
   return response.data;
 };
 
-export const updateCard = async (cardId, updates) => {
-  const response = await axios.put(`${API_URL}/cards/${cardId}`, {...updates });
+export const updateCard = async (boardId, cardId, updates) => {
+  const response = await axios.patch(`${API_URL}/boards/${boardId}/cards/${cardId}`, {...updates });
   return response.data;
 };
 
-export const deleteCard = async (cardId) => {
-  await axios.delete(`${API_URL}/cards/${cardId}`);
+export const deleteCard = async (boardId, cardId) => {
+  await axios.delete(`${API_URL}/boards/${boardId}/cards/${cardId}`);
 };

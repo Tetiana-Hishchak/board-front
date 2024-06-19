@@ -6,11 +6,12 @@ import styles from '../styles/style.module.css';
 
 interface CardListProps {
   cards: CardType[];
-  onCardUpdate: (cardId: string, title: string, description: string) => void;
-  onCardDelete: (cardId: string) => void;
+  boardId: string;
+  onCardUpdate: (boardId: string, cardId: string, title: string, description: string) => void;
+  onCardDelete: (boardId: string, cardId: string) => void;
 }
 
-export const CardList: React.FC<CardListProps> = ({ cards, onCardUpdate, onCardDelete }) => {
+export const CardList: React.FC<CardListProps> = ({ cards, boardId, onCardUpdate, onCardDelete }) => {
   return (
     <div>
       {cards.map((card, index) => (
@@ -24,6 +25,7 @@ export const CardList: React.FC<CardListProps> = ({ cards, onCardUpdate, onCardD
             >
               <CardComponent
                 card={card}
+                boardId={boardId}
                 onUpdate={onCardUpdate}
                 onDelete={onCardDelete}
               />

@@ -3,33 +3,44 @@ import { CardList } from './CardList';
 import { Board as BoardType } from '@/type/board';
 import { AddCardForm } from './AddCardForm';
 import styles from '../styles/style.module.css';
+import { ColumnType } from '@/type/ColumnType';
 
 interface BoardProps {
-  board: BoardType;
-  showForm: boolean;
-  onShowForm: (t: boolean) => void;
-  onCardAdd: (title: string, description: string) => void;
-  onCardUpdate: (cardId: string, title: string, description: string) => void;
-  onCardDelete: (cardId: string) => void;
+  column: ColumnType;
+  showForm: string;
+  boardId: string;
+  onShowForm: (t: string) => void;
+  onCardAdd: (boardId: string, title: string, description: string) => Promise<void>;
+  onCardUpdate: (boardId: string, cardId: string, title: string, description: string) => void;
+  onCardDelete: (boardId: string, cardId: string) => void;
 }
 
-export const Board: React.FC<BoardProps> = ({ board, showForm, onShowForm, onCardAdd, onCardUpdate, onCardDelete }) => {
+export const Board: React.FC<BoardProps> = ({ 
+  boardId, column, showForm, 
+  onShowForm, onCardAdd, onCardUpdate, onCardDelete}) => {
   const handleAddCardClick = () => {
-    onShowForm(true);
+    onShowForm(boardId);
   };
   return (
-    <>
-      <h3 className={styles.board__title}>{board.name}</h3>
+    
+    <>  
+      <h3 className={styles.board__title}>{column.name}</h3>
       <div className={styles.board__container}>
+
         <div>
           <CardList
-            cards={board.cards}
+            cards={column.cards}
+            boardId={boardId}
             onCardUpdate={onCardUpdate}
             onCardDelete={onCardDelete} />
         </div>
-        {board.name === 'ToDo' && (
+        {column.name === 'ToDo' && (
           <div className={styles.card__container}>
-            {showForm ? <AddCardForm onCardAdd={onCardAdd} onShowForm={onShowForm} /> : (
+            {showForm === boardId  ? <AddCardForm 
+              boardId={boardId}
+              onCardAdd={onCardAdd} 
+              onShowForm={onShowForm} 
+            /> : (
               <button
                 className={styles.button__add}
                 onClick={handleAddCardClick}
